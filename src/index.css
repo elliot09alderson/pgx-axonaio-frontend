@@ -1,0 +1,168 @@
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+
+
+  body {
+    background: #f1f1f1;
+  }
+
+  h1 {
+    @apply text-xl font-medium capitalize;
+  }
+}
+
+.link {
+  @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium;
+}
+
+.active {
+  @apply bg-blue-100 text-blue-600;
+}
+
+
+
+
+
+
+
+:root {
+  --bg-color: #f1f5f9;
+  --text-color: #958f99;
+  --text-blue: #a07bf8;
+  --bg-blue: #8b5cf6;
+
+
+
+
+
+  --primary-color: #27374D;
+  --secondary-color: #526D82;
+  --ternary-color:#9DB2BF;
+  --background-color:#f4f7fa;
+}
+
+
+
+
+
+
+
+.tairo-bg-blue{
+  @apply bg-[var(--bg-blue)]
+}
+.tairo-bg{
+  @apply bg-[var(--bg-color)] 
+}
+.tairo-text{
+  @apply text-[var(--text-color)]
+}
+.tairo-text-blue{
+  @apply text-[var(--text-blue)]
+}
+
+
+
+
+
+
+
+
+
+.first-bg{
+  @apply bg-[var(--primary-color)]
+}
+.second-bg{
+  @apply bg-[var(--secondary-color)]
+}
+.third-bg{
+  @apply bg-[var(--ternary-color)]
+}
+.fourth-bg{
+  @apply bg-[var(--background-color)]
+}
+
+
+
+.first-text{
+  @apply text-[var(--primary-color)]
+}
+.second-text{
+  @apply text-[var(--secondary-color)]
+}
+.third-text{
+  @apply text-[var(--ternary-color)]
+}
+.fourth-text{
+  @apply text-[var(--background-color)]
+}
+/* TEXT HOVER */
+
+.hover-text-first{
+  @apply hover:text-[var(--primary-color)]
+}
+.hover-text-second{
+  @apply hover:text-[var(--secondary-color)]
+}
+.hover-text-third{
+  @apply hover:text-[var(--ternary-color)]
+}
+.hover-text-fourth{
+  @apply hover:text-[var(--background-color)]
+}
+
+/* BG HOVER */
+.hover-bg-first{
+  @apply hover:bg-[var(--primary-color)]
+}
+.hover-bg-second{
+  @apply hover:bg-[var(--secondary-color)]
+}
+.hover-bg-third{
+  @apply hover:bg-[var(--ternary-color)]
+}
+.hover-bg-fourth{
+  @apply hover:bg-[var(--background-color)]
+}
+
+
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+input[type="number"] {
+  appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+/* Fallback for other browsers */
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+}

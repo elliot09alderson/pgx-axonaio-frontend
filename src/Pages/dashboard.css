@@ -1,0 +1,99 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+button:focus{
+    user-select: none;
+}
+
+
+body {
+  margin: 0;
+  padding: 0 !important;
+  box-sizing: border-box;
+  border: none;
+}
+h3 {
+  margin: 0;
+}
+body {
+  background-color: var(--background-color);
+  /* filter: blur(2px); */
+  /* -webkit-filter: blur(2px); */
+}
+
+.vertical {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  /* -webkit-transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -o-transform: rotate(90deg);
+    /* -ms-transform:rotate(90deg); */
+  /* white-space:nowrap;
+    display:block;
+    bottom:0;
+    width:20px;
+    height:20px;  */
+}
+
+.cross button:focus {
+  outline: none;
+}
+
+.cross button path{
+  transition: all 0.2s;
+}
+
+
+.cross button:hover path{
+  stroke:var(--primary-color);
+}
+
+.cross svg{
+  transition: all 0.5s;
+  
+}
+
+
+.cross svg {
+  size: 40px !important;
+  width: 40px;
+  height: 40px;
+
+  /* padding-bottom: 20px; */
+}
+
+@media only screen and (min-width: 600px) {
+  .sub-nav:hover .sub-nav-text {
+    display: block !important;
+    align-items: center;
+  }
+
+  .sub-nav-text {
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  }
+
+  .LeftIconSubDiv:hover .LeftSubDiv {
+    left: 8vw !important;
+    position: fixed;
+  }
+  .LeftIconSubDiv:hover .LeftIconSubDiv > div {
+    margin-left: 3vw;
+  }
+
+  .LeftIconSubDiv:hover .nav-icon-link {
+    justify-content: flex-start;
+    margin-left: 3vw;
+  }
+}
+
+path {
+  stroke: var(--background-color);
+}
