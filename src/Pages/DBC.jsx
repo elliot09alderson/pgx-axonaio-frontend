@@ -23,17 +23,12 @@ import PgChargeback from "./Dashboard Components/pg/PgChargeback.jsx";
 import PayinSettings from "./Dashboard Components/pg/PayinSettings.jsx";
 import PayoutSettings from "./Dashboard Components/payout/PayoutSettings.jsx";
 import PayoutTransfer from "./Dashboard Components/payout/PayoutTransfer.jsx";
-import ResellerDashboard from "./Reseller/ResellerDashboard.jsx";
-import MerchantWiseTransaction from "./Reseller/MerchantWiseTransaction.jsx";
-import PriceListMerchantWise from "./Reseller/PriceListMerchantWise.jsx";
-import CommisiionDetails from "./Reseller/CommisiionDetails.jsx";
-import SettlementPage from "./Reseller/SettlementPage.jsx";
-import Billing from "./Reseller/Billing.jsx";
-import ResellerProfile from "./Reseller/ResellerProfile.jsx";
+
 import PayoutDashboard from "./Dashboard Components/DashboardPayout/PayoutDashboard.jsx";
 import PayinDashboard from "./Dashboard Components/DashboardPayin/PayinDashboard.jsx";
 import PayInCases from "./Dashboard Components/pg/PayInCases.jsx";
 import { useSelector } from "react-redux";
+import SideBarX from "./sidebar2/SideBarX.jsx";
 
 // ******* LAZY imports ******
 const BigSideBar = lazy(() =>
@@ -99,7 +94,7 @@ const DBC = () => {
   };
 
   return (
-    <RootLayout>
+    <SideBarX>
       {/* Dynamic Routes */}
 
       <Routes>
@@ -237,7 +232,7 @@ const DBC = () => {
         <Route path="menu1/submenu2" element={<Analytics />} />
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
       </Routes>
-    </RootLayout>
+    </SideBarX>
   );
 };
 

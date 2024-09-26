@@ -403,7 +403,7 @@ const PieData = [
 ];
 function BodyGraph({ children }) {
   return (
-    <div className=" w-full  h-full   my-12 bg-white text-sm rounded-lg py-2 px-2 ">
+    <div className=" w-full  h-full   my-12 bg-stone-300 text-sm rounded-lg py-2 px-2 ">
       {children}
     </div>
   );
@@ -496,11 +496,11 @@ const PayinDashboard = () => {
   return (
     <>
       {
-        <div className="flex lg:flex-row gap-4 w-full px-4  py-2  flex-col bg-white rounded-lg ">
+        <div className="flex lg:flex-row gap-4   w-full px-4  py-2  flex-col bg-stone-300 rounded-lg ">
           <LeftBox>
             <div className="w-full">
               <div className="shadow-md rounded-lg md:shadow-none md:p-4 py-8 w-full flex flex-col items-center justify-center">
-                <h1 className="text-xl text-center text-gray-400 p-2 mb-2 font-semibold">
+                <h1 className="text-xl text-center text-slate-700 p-2 mb-2 font-semibold">
                   pay In Counts
                 </h1>
                 <div className="flex md:flex-row gap-8 flex-col">
@@ -537,7 +537,7 @@ const PayinDashboard = () => {
             </div>
             <div className="w-full ">
               <div className="shadow-md rounded-lg md:shadow-none md:p-4 w-full py-8 flex flex-col items-center justify-center">
-                <h1 className="text-xl text-gray-400 text-center p-2 mb-2 font-semibold ">
+                <h1 className="text-xl text-slate-700 text-center p-2 mb-2 font-semibold ">
                   payIn Volume
                 </h1>
                 <div className="flex  md:flex-row gap-8 flex-col">

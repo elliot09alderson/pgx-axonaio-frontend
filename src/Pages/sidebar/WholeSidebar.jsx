@@ -16,7 +16,6 @@ import { GiReturnArrow } from "react-icons/gi";
 import { ImUserTie } from "react-icons/im";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { permission } from "process";
 
 const WholeSidebar = ({ Idx, setIdx, open, setOpen, isTabletMid }) => {
   const { mode } = useSelector((state) => state.user);
@@ -111,7 +110,6 @@ const WholeSidebar = ({ Idx, setIdx, open, setOpen, isTabletMid }) => {
     {
       icon: AiFillAppstore,
       label: "Apps",
-      path: "/merchant/user/apps",
       permission: "both",
       menu: [
         {
@@ -1067,7 +1065,7 @@ const WholeSidebar = ({ Idx, setIdx, open, setOpen, isTabletMid }) => {
         open ? "flex" : "hidden"
       } w-[22rem] fixed h-screen duration-500 pl-2 bg-white z-[99999]`}
     >
-      <div className="z-[999] top-0 w-[5rem] overflow-hidden md:relative bg-white flex-col pr-2 top-0 z-[1000] border-r">
+      <div className=" w-[5rem] overflow-hidden md:relative bg-white flex-col pr-2 top-0 z-[1000] border-r">
         <div className="duration-500 flex flex-col h-full justify-between items-center ease-in">
           <div className="duration-500 flex flex-col gap-4 mt-4 items-center ease-in">
             <Menu items={menuItems} currentPath={currentPath} setIdx={setIdx} />

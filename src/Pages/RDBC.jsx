@@ -1,25 +1,22 @@
 import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-
-import RootLayout from "./sidebar/RootLayout.jsx";
-
 import ResellerDashboard from "./Reseller/ResellerDashboard.jsx";
 import MerchantWiseTransaction from "./Reseller/MerchantWiseTransaction.jsx";
 import PriceListMerchantWise from "./Reseller/PriceListMerchantWise.jsx";
 import SettlementPage from "./Reseller/SettlementPage.jsx";
 import CommisiionDetails from "./Reseller/CommisiionDetails.jsx";
 import Billing from "./Reseller/Billing.jsx";
-import ResellerProfile from "./Reseller/ResellerProfile.jsx";
 import ManageMerchant from "./Reseller/ManageMerchant.jsx";
 import MerchantWiseTransfer from "./Reseller/MerchantWiseTransfer.jsx";
 import MerchantWiseFundStatement from "./Reseller/MerchantWiseFundStatement.jsx";
+import SideBarX from "./sidebar2/SideBarX.jsx";
 // import ResellerLayout from "./sidebar/ResellerLayout.jsx";
 
 // ******* LAZY imports ******
 
 const RDBC = () => {
   return (
-    <RootLayout>
+    <SideBarX>
       {/* Dynamic Routes */}
 
       <Routes>
@@ -36,7 +33,7 @@ const RDBC = () => {
         <Route path="managemerchant" element={<ManageMerchant />} />
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
       </Routes>
-    </RootLayout>
+    </SideBarX>
   );
 };
 

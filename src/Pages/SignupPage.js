@@ -12,7 +12,7 @@ import { useSnackbar } from "notistack";
 import { ErrorPara } from "../components/OnboardingFormComponent/BusinessComponent";
 import { IsEmptySignup, signupValidation } from "../utils/validation";
 import { frontImage } from "../assests";
-
+import myLogo from "../assests/axonaio-icon.png";
 function Newfiles3({ merchantLogo }) {
   const navigate = useNavigate();
   let formObj = { name: "", password: "", email: "", phonenumber: "" };
@@ -20,6 +20,7 @@ function Newfiles3({ merchantLogo }) {
   const [error, setError] = useState({});
   const { enqueueSnackbar } = useSnackbar();
 
+  console.log(merchantLogo);
   // const hasErrors = () => {
   //   let hasError = false;
   //   let errors = {};
@@ -84,7 +85,11 @@ function Newfiles3({ merchantLogo }) {
           >
             <div className="md:mt-2 mt-4">
               {/* <h3 className="text-center">Sign In</h3> */}
-              <img src={merchantLogo} className="w-28 mx-auto" />
+              {!merchantLogo?.includes("undefined") ? (
+                <img src={merchantLogo} className="w-28 mx-auto" />
+              ) : (
+                <img src={myLogo} className="w-28 mx-auto" />
+              )}
               <p className=" text-center font-medium text-slate-800 my-4 mb-6 mt-2">
                 Create your account
               </p>
@@ -179,14 +184,14 @@ function Newfiles3({ merchantLogo }) {
                 type="button"
                 value="Sign up "
                 onClick={handleSubmit}
-                className="w-screen py-2 bg-[#552288] text-center text-white rounded-lg "
+                className="w-screen py-2 bg-blue-700 text-center text-white rounded-lg "
               />
             </div>
-            <p className="mb-4 text-xs text-center text-[#552288] font-medium">
-              <span className=" sm:inline  ">Already a member </span>
+            <p className="mb-4 text-xs text-center text-blue-700 font-medium">
+              <span className=" text-base ">Already a member </span>
               <span
                 onClick={() => navigate("/")}
-                className=" cursor-pointer underline transition-all hover:opacity-70"
+                className=" cursor-pointer underline transition-all hover:opacity-70 text-lg"
               >
                 Log in
               </span>
@@ -195,7 +200,7 @@ function Newfiles3({ merchantLogo }) {
             {/* {error && <ErrorPara>{error}</ErrorPara>} */}
           </form>
         </div>
-        <div className=" min-h-[100vh] hidden flex-col bg-[#440a64] min-w-[50%] p-16 sm:flex items-center justify-center ">
+        <div className=" min-h-[100vh] hidden flex-col bg-blue-700 min-w-[50%] p-16 sm:flex items-center justify-center ">
           <img
             src={fintech}
             alt="signinLogo"

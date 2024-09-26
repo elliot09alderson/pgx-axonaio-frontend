@@ -6,12 +6,17 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 // import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import {
-  fetch_datewise_transaction,
-  get_transactions,
-  messageClear,
-} from "../../redux/payin/transactionReducer";
+import { useSnackbar } from "notistack";
+
 import { Dropdown } from "flowbite-react";
+
+import {
+  create_merchant,
+  get_reseller_payin_transaction_by_date,
+  get_reseller_merchant,
+  messageClear,
+  get_reseller_payin_transaction,
+} from "../../redux/ResellerReducer/resellerReducer";
 const PriceListMerchantWise = () => {
   const headers = [
     // { header: "id", accessorKey: "_id" },
@@ -46,65 +51,101 @@ const PriceListMerchantWise = () => {
     //   cell: (info) => "Edit | Delete",
     // },
   ];
-  const dispatch = useDispatch();
-
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  // const [dateInput, setDateInput] = useState(null);
-  const [data, setData] = useState([]);
-  // # selector
-  const { transactionData, successMessage, loader } = useSelector(
-    (state) => state.transaction
-  );
+  const {
+    resellerMerchant,
+    payinTransaction,
+    successMessage,
+    errorMessage,
+    loader,
+  } = useSelector((state) => state.reseller);
   const { mode } = useSelector((state) => state.user);
 
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [data, setData] = useState([]);
+  const [merchantData, setMerchantData] = useState([]);
+  const [merchant, setMerchant] = useState(null);
+
   useEffect(() => {
-    if (transactionData.length > 0) {
-      setData(transactionData[0].documents);
-    }
-  }, [transactionData]);
+    setMerchantData(resellerMerchant);
+  }, [resellerMerchant]);
+
+  useEffect(() => {
+    dispatch(get_reseller_merchant({ mode }));
+    console.log(resellerMerchant);
+  }, []);
+
+  useEffect(() => {
+    setData(payinTransaction);
+  }, [payinTransaction]);
 
   useEffect(() => {
     if (startDate != null && endDate != null) {
-      dispatch(
-        get_transactions({ startDate: startDate.$d, endDate: endDate.$d, mode })
-      );
+      const start = moment(startDate.$d).utc().toDate().toISOString();
+      const end = convertToEndDate(endDate.$d);
+      if (!merchant?.m_id) {
+        enqueueSnackbar("plese select the merchant");
+      } else {
+        dispatch(
+          get_reseller_payin_transaction_by_date({
+            id: merchant?.m_id,
+            startDate: start,
+            endDate: end,
+            mode,
+          })
+        );
+      }
+    } else {
+      if (merchant?.m_id) {
+        dispatch(get_reseller_payin_transaction({ id: merchant.m_id, mode }));
+      }
     }
-    dispatch(get_transactions({ startDate: null, endDate: null, mode }));
 
     if (successMessage) {
       console.log("setting the data in table");
-      setData(transactionData[0].documents);
+      setData(payinTransaction);
       dispatch(messageClear());
     }
-  }, [startDate, endDate]);
+  }, [startDate, merchant, endDate]);
 
+  useEffect(() => {
+    if (errorMessage) {
+      enqueueSnackbar(errorMessage);
+    }
+    if (successMessage) {
+      enqueueSnackbar(successMessage);
+    }
+    dispatch(messageClear());
+  }, [errorMessage, successMessage]);
+
+  // _______select merchant________
+  function selectMerchant(m_id, name) {
+    dispatch(get_reseller_payin_transaction({ id: m_id, mode }));
+    setMerchant({ m_id, name });
+  }
   return (
     <div className=" w-full h-full  sm:py-1">
       <div className="my-4 w-full py-8 flex lg:flex-row flex-col rounded-lg bg-[#a3b1cc]/70 gap-8 px-8 lg:gap-12 z-[99999] items-center justify-center">
         <div className="flex flex-row w-full  lg:gap-4 gap-8">
-          <div className="    flex">
+          <div className=" flex">
             <Dropdown
-              label="Select Mercahant"
+              label={merchant ? merchant.name : `Select Mercahant`}
               gradientDuoTone="purpleToBlue"
-              dismissOnClick={false}
+              // dismissOnClick={false}
             >
-              <Dropdown.Item>merchant 1 </Dropdown.Item>
-              <Dropdown.Item>merchant 2</Dropdown.Item>
-              <Dropdown.Item>merchant 3</Dropdown.Item>
-              <Dropdown.Item>Sign out</Dropdown.Item>
-            </Dropdown>
-          </div>
-          <div className="  flex">
-            <Dropdown
-              label="Days "
-              gradientDuoTone="purpleToBlue"
-              dismissOnClick={false}
-            >
-              <Dropdown.Item>merchant 1 </Dropdown.Item>
-              <Dropdown.Item>merchant 2</Dropdown.Item>
-              <Dropdown.Item>merchant 3</Dropdown.Item>
-              <Dropdown.Item>Sign out</Dropdown.Item>
+              {merchantData.map((item, idx) => (
+                <div key={idx}>
+                  <Dropdown.Item
+                    onClick={() => {
+                      selectMerchant(item.m_id, item.name);
+                    }}
+                  >
+                    {item.name}{" "}
+                  </Dropdown.Item>
+                </div>
+              ))}
             </Dropdown>
           </div>
         </div>
@@ -133,7 +174,7 @@ const PriceListMerchantWise = () => {
         <TanStackTable
           headers={headers}
           successMessage={successMessage}
-          data={data}
+          data={payinTransaction}
           clearMessage={messageClear}
           className="second-bg rounded-t-md"
           // component={<DropDown />}

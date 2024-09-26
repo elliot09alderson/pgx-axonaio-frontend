@@ -118,8 +118,8 @@ const Profile = () => {
   return (
     <div className=" w-full py-5 gap-2 flex flex-col  ">
       <div className=" grid grid-cols-1 sm:grid-cols-2 rounded-t-lg p-4 bg-white gap-8 ">
-        <div className="h-full flex flex-col  gap-4  p-4">
-          <h1 className="text-3xl mb-4 drop-shadow-md  text-[#a07bf8]">
+        <div className="h-full flex flex-col  gap-4 bg-stone-300 rounded-lg  p-4">
+          <h1 className="text-3xl mb-4 drop-shadow-md  text-slate-700">
             Company Details
           </h1>
           <div className="flex flex-col gap-5">
@@ -137,8 +137,8 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="h-full  flex flex-col  p-4 gap-4">
-          <h1 className="text-3xl mb-4 drop-shadow-md  text-[#a07bf8] ">
+        <div className="h-full  flex flex-col bg-stone-300 rounded-lg  p-4 gap-4">
+          <h1 className="text-3xl mb-4 drop-shadow-md  text-slate-700 ">
             Bank Details
           </h1>
           <div className="flex flex-col gap-5">
@@ -158,8 +158,8 @@ const Profile = () => {
       </div>
       <div className="h-2 bg-grey-500"></div>
       <div className=" grid grid-cols-1 sm:grid-cols-2 p-4  bg-white gap-8 rounded-b-lg">
-        <div className="h-full  flex flex-col  p-4 gap-4">
-          <h1 className="text-3xl mb-4 drop-shadow-md  text-[#a07bf8]">
+        <div className="h-full  flex flex-col  bg-stone-300 rounded-lg shadow-sm  p-4 gap-4">
+          <h1 className="text-3xl mb-4 drop-shadow-md  text-slate-700">
             Document Details
           </h1>
 
@@ -177,8 +177,8 @@ const Profile = () => {
             ))}
           </div>
         </div>
-        <div className="h-full   flex flex-col p-4 gap-5 ">
-          <h1 className="text-3xl mb-2 drop-shadow-md  text-[#a07bf8]">
+        <div className="h-full   flex flex-col p-4 gap-5 bg-stone-300 rounded-lg shadow-sm  ">
+          <h1 className="text-3xl mb-2 drop-shadow-md  text-slate-700">
             Business Details
           </h1>
           <div className="flex flex-col gap-5">

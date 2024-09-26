@@ -59,7 +59,7 @@ const TanStackTable = ({
 
   return (
     <div
-      className={`sm:p-2 p-1    max-w-full text-[#a0aeca]  text-white  mt-2`}
+      className={`sm:p-2 p-1  rounded-lg   max-w-full text-[#a0aeca] bg-stone-300  mt-2`}
     >
       <div className=" flex flex-col sm:flex-row w-full justify-between ">
         <div className="ml-2 w-full flex lg:flex-row flex-col  justify-between  items-center  gap-4">
@@ -76,7 +76,7 @@ const TanStackTable = ({
           </div>
           {/* FOR Custom Page Input */}
           <div className="flex gap-2  w-full items-center justify-center">
-            <span className="flex items-center gap-1 ml-4 text-[#a0aeca] ">
+            <span className="flex items-center gap-1 ml-4 text-slate-700 ">
               Go to page:
             </span>
             <input
@@ -119,18 +119,20 @@ const TanStackTable = ({
                 onChange={column.getToggleVisibilityHandler()}
                 checked={column.getIsVisible()}
               />
-              <span className="tairo-text px-2">{column.columnDef.header}</span>
+              <span className="text-slate-700 px-2 ">
+                {column.columnDef.header}
+              </span>
             </div>
           ))}
         </div>
-        <table className=" w-full  mt-4 rounded-lg md:border-spacing-4 text-[#a0aeca] bg-[#f1f5f9]  ">
+        <table className=" w-full  mt-4 rounded-lg md:border-spacing-4 text-slate-700 bg-blue-700  ">
           <thead className=" rounded-t-sm ">
             {table.getHeaderGroups().map((headergroup, idx) => (
               <tr key={idx} className=" rounded-lg ">
                 {headergroup.headers.map((header, idx) => (
                   <th
                     key={idx + 12}
-                    className="capitalize truncate hover:text-clip text-[#a0aeca] sm:text-base text-xs tracking-tight  sm:px-3.5 px-1 py-2 sm:py-2 lg:py-3 md:px-4 lg:text-lg tracking-wider"
+                    className="capitalize truncate hover:text-clip text-white sm:text-base text-xs   sm:px-3.5 px-1 py-2 sm:py-2 lg:py-3 md:px-4 lg:text-lg "
                   >
                     {flexRender(
                       header.column.columnDef.header,
@@ -197,7 +199,7 @@ const TanStackTable = ({
         {/* Display Page Number */}
         <div className="flex">
           <span className="flex items-center gap-1">
-            <div>Page</div>
+            <div className="text-slate-700">Page</div>
             {/* <strong>
               {table.getState().pagination.pageIndex + 1} of{" "}
               {successMessage &&
@@ -220,11 +222,15 @@ const TanStackTable = ({
             onChange={(e) => {
               table.setPageSize(Number(e.target.value));
             }}
-            className="p-2 bg-white outline-none border  gap-2 rounded-md"
+            className="p-2 bg-white text-slate-700 outline-none border  gap-2 rounded-md"
             id=""
           >
             {[10, 20, 30, 50].map((pageSize, idx) => (
-              <option key={pageSize + idx} className="" value={pageSize}>
+              <option
+                key={pageSize + idx}
+                className="text-slate-700"
+                value={pageSize}
+              >
                 show {pageSize}
               </option>
             ))}

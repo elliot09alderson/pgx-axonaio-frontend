@@ -12,6 +12,7 @@ import { FcGoogle } from "react-icons/fc";
 import loginImg from "../assests/login-removebg-preview.png";
 import { PiWarning } from "react-icons/pi";
 import { MagnifyingGlass } from "react-loader-spinner";
+import myLogo from "../assests/axonaio-icon.png";
 
 function LoginPage({ merchantLogo, networkError }) {
   let formObj = { password: "", email: "" };
@@ -95,7 +96,11 @@ function LoginPage({ merchantLogo, networkError }) {
                 className="lg:max-w-[400px] sm:max-w-[300px] max-w-[80%]"
               >
                 <div className="md:mt-2 mt-4">
-                  <img src={merchantLogo} className="w-32 mx-auto py-3" />
+                  {!merchantLogo?.includes("undefined") ? (
+                    <img src={merchantLogo} className="w-28 mx-auto" />
+                  ) : (
+                    <img src={myLogo} className="w-28 mx-auto" />
+                  )}
                   <div className="text-center">
                     {error && (
                       <ErrorPara>
@@ -115,7 +120,7 @@ function LoginPage({ merchantLogo, networkError }) {
                       type="email"
                       value={formValues.email}
                       onChange={handleChange}
-                      className=" w-full px-2 py-2  ring-1 ring-[#a07bf8] max-w-[400px] rounded-md focus:outline-none "
+                      className=" w-full px-2 py-2  ring-1 ring-blue-700 max-w-[400px] rounded-md focus:outline-none "
                       placeholder="email"
                       name="email"
                       required
@@ -131,7 +136,7 @@ function LoginPage({ merchantLogo, networkError }) {
                       type="password"
                       value={formValues.password}
                       onChange={handleChange}
-                      className="w-full px-2 py-2 ring-1 ring-[#a07bf8] max-w-[400px] rounded-md focus:outline-none "
+                      className="w-full px-2 py-2 ring-1 ring-blue-700 max-w-[400px] rounded-md focus:outline-none "
                       placeholder="password"
                       name="password"
                       required
@@ -163,14 +168,14 @@ function LoginPage({ merchantLogo, networkError }) {
                     type="button"
                     value="Log In"
                     onClick={handleSubmit}
-                    className="w-screen py-2 cursor-pointer bg-[#a07bf8] text-center text-white rounded-lg "
+                    className="w-screen py-2 cursor-pointer bg-blue-700 text-center text-white rounded-lg "
                   />
                 </div>
-                <p className="mb-4 text-xs text-center text-[#a07bf8] font-medium">
-                  <span className=" sm:inline  ">New to Axonaio? </span>
+                <p className="mb-4 text-xs text-center text-blue-700 font-medium">
+                  <span className=" text-base ">New to Axonaio? </span>
                   <span
                     onClick={() => navigate("/merchants/signup")}
-                    className=" cursor-pointer underline transition-all hover:opacity-70"
+                    className=" cursor-pointer underline transition-all hover:opacity-70 text-blue-700 text-lg"
                   >
                     Sign up
                   </span>
@@ -186,7 +191,7 @@ function LoginPage({ merchantLogo, networkError }) {
                 </div>
               </form>
             </div>
-            <div className=" min-h-[100vh] hidden flex-col bg-[#a07bf8] min-w-[50%] p-16 sm:flex items-center justify-center">
+            <div className=" min-h-[100vh] hidden flex-col bg-blue-700 min-w-[50%] p-16 sm:flex items-center justify-center">
               <img src={loginImg} className="w-10/12 " />
             </div>
           </div>

@@ -71,7 +71,7 @@ const FundStatement = () => {
         })
       );
     } else {
-      dispatch(get_fundStatement({mode}));
+      dispatch(get_fundStatement({ mode }));
     }
 
     if (successMessage) {
@@ -88,10 +88,15 @@ const FundStatement = () => {
     }
     dispatch(messageClear());
   }, [errorMessage, successMessage]);
+  const { isOpen } = useSelector((slice) => slice.sidebar);
 
   return (
-    <div className=" w-full h-full  sm:py-1">
-      <div className="my-4 w-full py-8 flex rounded-lg bg-[#a3b1cc]/70 gap-8 px-8 lg:gap-12 z-[99999] items-center justify-center">
+    <div
+      className={`${
+        isOpen === true ? " w-[84vw] " : "  w-[96vw] "
+      }  h-full  sm:py-1`}
+    >
+      <div className="my-4 w-full py-8 flex rounded-lg  bg-[#a3b1cc]/70 gap-8 px-8 lg:gap-12 z-[99999] items-center justify-center">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
             value={startDate}

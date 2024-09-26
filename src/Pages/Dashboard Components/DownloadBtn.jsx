@@ -5,8 +5,8 @@ import { Button } from "flowbite-react";
 const DownloadBtn = ({ data = [], fileName }) => {
   return (
     <Button
-      gradientDuoTone="purpleToBlue"
-      className={`cursor-pointer flex justify-center rounded-md items-center px-5  bg-[#8b5cf6]  gap-2    hover:bg-[#8b5cf6]/50 duration-500   hover:shadow-md text-white`}
+      // gradientDuoTone="purpleToBlue"
+      className={`cursor-pointer flex justify-center rounded-md items-center px-5  bg-green-700  gap-2   duration-500   hover:shadow-md text-white`}
       onClick={() => {
         const datas = data?.length ? data : [];
         const sheet = XLSX.utils.json_to_sheet(datas);

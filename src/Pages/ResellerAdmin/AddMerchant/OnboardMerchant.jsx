@@ -177,7 +177,7 @@ const OnboardMerchant = ({ setOpenModal }) => {
       dispatch(create_radmin_merchant({ values: formData, mode })).then(() => {
         resetForm();
         setOpenModal(false);
-        dispatch(get_radmin_merchant({ admin }));
+        dispatch(get_radmin_merchant({ mode }));
       });
 
       ToastSuccessNotifications("merchant created successfully");

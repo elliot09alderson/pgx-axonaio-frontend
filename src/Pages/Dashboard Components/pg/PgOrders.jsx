@@ -80,17 +80,21 @@ const PgOrders = () => {
     }
     dispatch(messageClear());
   }, [errorMessage, successMessage]);
+  const { isOpen } = useSelector((slice) => slice.sidebar);
 
   return (
-    <div className=" w-full h-full  sm:py-1">
-      <div className="my-4 w-full py-8 flex rounded-lg bg-[#a3b1cc]/70 gap-8 px-8 lg:gap-12 z-[99999] items-center justify-center">
+    <div className={`  h-full  sm:py-1`}>
+      <div className="my-4 w-full py-8 flex rounded-lg bg-stone-300 gap-8 px-8 lg:gap-12 z-[99999] items-center justify-center">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <h1>from</h1>
           <DatePicker
+            className="text-slate-700 border-slate-700"
             value={startDate}
             onChange={(newValue) => setStartDate(newValue)}
           />
         </LocalizationProvider>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <h1 className="text-slate-700">to</h1>
           <DatePicker
             value={endDate}
             onChange={(newValue) => setEndDate(newValue)}

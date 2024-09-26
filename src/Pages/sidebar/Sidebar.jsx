@@ -62,7 +62,7 @@ const Sidebar = ({
           variants={Nav_animation}
           initial={{ x: isTabletMid ? -250 : 0 }}
           animate={open ? "open" : "closed"}
-          className=" bg-white text-gray shadow-x h-[100%] z-[999] top-0  w-[16rem] 
+          className=" bg-white text-gray shadow-x  z-[999] top-0  w-[16rem] 
             overflow-hidden md:relative fixed 
          h-screen "
         >

@@ -345,32 +345,34 @@ export const PayinSettings = () => {
       console.error("Failed to copy:", error);
     }
   };
+  const { isOpen } = useSelector((slice) => slice.sidebar);
+
   return (
-    <div className="rounded-b-lg relative overflow-hidden ">
-      <div className="w-full flex items-center justify-center flex-col  bg-[#ede9fe]   my-10 rounded-t-xl">
+    <div className={`rounded-b-lg relative overflow-hidden  min-h-screen`}>
+      <div className="w-full flex items-center justify-center flex-col bg-stone-300   my-10 rounded-t-xl">
         <div
-          className={` flex justify-start   bg-[#ede9fe] rounded-t-xl  w-full sm:text-lg  items-end  text-sm font-semibold `}
+          className={` flex justify-start   bg-stone-300 rounded-t-xl  w-full sm:text-lg  items-end  text-sm font-semibold `}
         >
           <div
             className={`px-[3vw] ${
-              active === "Webhook" ? "bg-[#a07bf8] fourth-text" : ""
-            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-[#a07bf8] transition-all delay-600 ease-in  py-2 shadow-lg  `}
+              active === "Webhook" ? "bg-blue-700 fourth-text" : ""
+            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-blue-700 transition-all delay-600 ease-in  py-2 shadow-lg  `}
             onClick={() => setActive("Webhook")}
           >
             Webhook
           </div>
           <div
             className={` px-[3vw] ${
-              active === "APIkey" ? "bg-[#a07bf8] fourth-text" : ""
-            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-[#a07bf8] transition-all delay-600 ease-in   py-2 shadow-lg `}
+              active === "APIkey" ? "bg-blue-700 fourth-text" : ""
+            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-blue-700 transition-all delay-600 ease-in   py-2 shadow-lg `}
             onClick={() => setActive("APIkey")}
           >
             API Keys
           </div>
           <div
             className={` px-[3vw] ${
-              active === "WhiteList" ? "bg-[#a07bf8] fourth-text" : ""
-            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base     hover-bg-[#a07bf8] transition-all delay-600 ease-in  py-2 shadow-lg `}
+              active === "WhiteList" ? "bg-blue-700 fourth-text" : ""
+            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base     hover-bg-blue-700 transition-all delay-600 ease-in  py-2 shadow-lg `}
             onClick={() => setActive("WhiteList")}
           >
             IP White Listing
@@ -378,13 +380,13 @@ export const PayinSettings = () => {
         </div>
 
         {active === "Webhook" && (
-          <div className="  w-full gap-5 my-5  bg-[#ede9fe] rounded-b-xl">
+          <div className="  w-full gap-5 my-5  bg-stone-300 rounded-b-xl">
             <div className="flex flex-col">
               <button
-                className="px-5 py-2 sm:text-lg text-xs  bg-[#a07bf8] rounded-lg text-white  focus:outline-none font-semibold self-end mr-5 lg:mr-10"
+                className="px-5 py-2 sm:text-lg text-xs  bg-blue-700 rounded-lg text-white  focus:outline-none font-semibold self-end mr-2"
                 onClick={() => props.setOpenModal("dismissible")}
               >
-                Add WebHook
+                Add Webhook
               </button>
             </div>
             <Modal
@@ -393,7 +395,7 @@ export const PayinSettings = () => {
               onClose={() => props.setOpenModal(undefined)}
               className="cross focus:outline-none  "
             >
-              <Modal.Header className="h-20 bg-[#a07bf8] ">
+              <Modal.Header className="h-14 bg-blue-700 ">
                 {" "}
                 <p className="text-lg text-white ">Add WebHook </p>
               </Modal.Header>
@@ -405,7 +407,7 @@ export const PayinSettings = () => {
                       type="text"
                       value={webhookurl}
                       onChange={(e) => setwebhookurl(e.target.value)}
-                      className="lg:h-10 border-none border-b lg:w-64 w-32 h-8 "
+                      className=" border-b border-2 lg:w-64 w-32 shadow-sm rounded-md h-8 "
                     />
                   </div>
                   <div className="flex items-center justify-between px-6 lg:px-12 ">
@@ -414,7 +416,7 @@ export const PayinSettings = () => {
                       value={writtenurl}
                       onChange={(e) => setwrittenurl(e.target.value)}
                       type="text"
-                      className="lg:h-10 border-none border-b lg:w-64 w-32 h-8  "
+                      className=" border-b border-2 lg:w-64 w-32 shadow-sm rounded-md h-8  "
                     />
                   </div>
                 </div>
@@ -438,29 +440,23 @@ export const PayinSettings = () => {
                       props.setOpenModal(undefined);
                     });
                   }}
-                  className="bg-[#a07bf8] hover:opacity-80 rounded-sm py-0 lg:py-1"
+                  className="bg-blue-700 h-8  rounded-sm "
                 >
                   {" "}
-                  <span className="text-xs sm:text-sm md:text-base">
-                    Add Webhook
-                  </span>
+                  Add Webhook
                 </Button>
                 <Button
                   // onClick={() => props.setOpenModal(undefined)}
-                  className="bg-[#a07bf8] py-0 lg:py-1 rounded-sm "
+                  className="bg-blue-700 h-8 rounded-sm "
                 >
                   {" "}
-                  <span className="text-xs sm:text-sm md:text-base">
-                    Edit Webhook
-                  </span>
+                  Edit Webhook
                 </Button>
                 <Button
-                  className="bg-red-400 rounded-sm py-1"
+                  className="bg-red-600 h-8 hover:bg-red-700 rounded-sm py-0"
                   onClick={() => props.setOpenModal(undefined)}
                 >
-                  <span className="text-xs sm:text-sm md:text-base py-1">
-                    Cancel
-                  </span>
+                  Cancel
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -471,10 +467,10 @@ export const PayinSettings = () => {
         )}
 
         {active === "APIkey" && (
-          <div className="  w-full h-full gap-5 bg-[#ede9fe] rounded-b-xl my-5">
+          <div className="  w-full h-full gap-5  bg-stone-300 rounded-b-xl my-5">
             <div className="flex flex-col ">
               <button
-                className="px-4 py-2 sm:text-base text-xs bg-[#a07bf8] rounded-lg text-white  focus:outline-none self-end mr-5  xl:mr-10 font-semibold "
+                className="px-4 py-2 sm:text-base text-xs bg-blue-700 rounded-lg text-white  focus:outline-none self-end mr-5  xl:mr-10 font-semibold "
                 onClick={() => {
                   askRegenerate();
                 }}
@@ -484,7 +480,7 @@ export const PayinSettings = () => {
             </div>
             {keys.length > 0 && (
               <div className="w-full   text-white flex flex-col items-center justify-center gap-4 my-4 lg:flex-row px-4 lg:px-8">
-                <div className=" bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center">
+                <div className=" bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center">
                   <h1 className="font-semibold">AES key </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white text-xl font-semibold">
@@ -497,7 +493,7 @@ export const PayinSettings = () => {
                     />
                   </div>
                 </div>
-                <div className="   bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center  ">
+                <div className="   bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center  ">
                   <h1 className="font-semibold">MID key </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white  font-semibold">
@@ -510,7 +506,7 @@ export const PayinSettings = () => {
                     />
                   </div>
                 </div>
-                <div className="   bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
+                <div className="   bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
                   <h1 className="font-semibold">SALT key </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white font-semibold">
@@ -523,7 +519,7 @@ export const PayinSettings = () => {
                     />
                   </div>
                 </div>
-                <div className="   bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
+                <div className="   bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
                   <h1 className="font-semibold">SECRET KEY </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white font-semibold">
@@ -542,10 +538,10 @@ export const PayinSettings = () => {
         )}
 
         {active === "WhiteList" && (
-          <div className="bg-[#ede9fe] rounded-b-xl my-5 w-full h-full gap-5 ">
+          <div className=" bg-stone-300 rounded-b-xl my-5 w-full h-full gap-5 ">
             <div className="flex w-full flex-col">
               <button
-                className="px-4 py-2 rounded-lg text-white sm:text-lg text-xs bg-[#a07bf8]  focus:outline-none font-semibold self-end  mr-1 sm:md-6 md:mr-8 xl:mr-10"
+                className="px-4 py-2 rounded-lg text-white sm:text-lg text-xs bg-blue-700  focus:outline-none font-semibold self-end  mr-1 sm:md-6 md:mr-8 xl:mr-10"
                 onClick={() => {
                   props.setOpenModal("dismissible");
                 }}
@@ -560,7 +556,7 @@ export const PayinSettings = () => {
               onClose={() => props.setOpenModal(undefined)}
               className="cross focus:outline-none"
             >
-              <Modal.Header className="h-20 bg-[#a07bf8]">
+              <Modal.Header className="h-14 bg-blue-700 ">
                 {" "}
                 <p className="text-lg text-white ">Whitelist</p>
               </Modal.Header>
@@ -573,12 +569,12 @@ export const PayinSettings = () => {
                       value={ip}
                       type="text"
                       onChange={(e) => setIp(e.target.value)}
-                      className=" h-8 lg:h-10 border-none ring outline-none border-b w-32 lg:w-64 "
+                      className="  border-b border-2 lg:w-64 w-32 shadow-sm rounded-md h-8 "
                     />
                   </div>
                 </div>
               </Modal.Body>
-              <Modal.Footer className=" bg-[#ede9fe] border-gray-400">
+              <Modal.Footer className=" border-gray-400">
                 <Button
                   onClick={() => {
                     dispatch(create_whitelist_ip({ ip, mode })).then(() => {
@@ -587,21 +583,16 @@ export const PayinSettings = () => {
                       props.setOpenModal(undefined);
                     });
                   }}
-                  className="bg-[#a07bf8] hover:opacity-80 rounded-sm py-1"
+                  className="bg-blue-700  rounded-sm h-8  "
                 >
-                  {" "}
-                  <span className="text-xs sm:text-sm md:text-base">
-                    Add IP
-                  </span>
+                  Add IP
                 </Button>
 
                 <Button
-                  className="bg-red-400 hover:bg-red-500 rounded-sm py-1"
+                  className="bg-red-600 hover:bg-red-700 h-8 rounded-sm py-0"
                   onClick={() => props.setOpenModal(undefined)}
                 >
-                  <span className="text-xs sm:text-sm md:text-base">
-                    Cancel
-                  </span>
+                  Cancel
                 </Button>
               </Modal.Footer>
             </Modal>

@@ -3,6 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar.jsx";
 import ResellerWholeSidebar from "./ResellerWholeSidebar.jsx";
+import SideBarX from "../sidebar2/SideBarX.jsx";
 
 function ResellerLayout({ children }) {
   let isTabletMid = useMediaQuery({ query: "(max-width: 768px)" });
@@ -11,11 +12,13 @@ function ResellerLayout({ children }) {
   return (
     <div className="flex  w-full bg-[#f1f5f9] ">
       {/* Sidebar  */}
-      <ResellerWholeSidebar
+      {/* <ResellerWholeSidebar
         setOpen={setOpen}
         open={open}
         isTabletMid={isTabletMid}
-      />
+      /> */}
+
+      <SideBarX />
       {/* Right Side Section */}
       <div
         className={`ml-0 ${open ? "md:ml-[20rem]  " : " w-full"}

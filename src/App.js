@@ -24,7 +24,7 @@ import RADBC from "./Pages/ResellerAdmin/RADBC";
 import ResellerAdminProtect from "./ResellerAdminProtect";
 import IdleTimer from "./utils/Timeout/IdleTimer";
 import { loginFailure } from "./redux/userRedux";
-import UserActivityProvider from "./utils/Timeout/UserActivityProvider";
+
 // **** Lazy Imports ****
 const LoginPage = lazy(() => import("./Pages/LoginPage"));
 const ResetPassword = lazy(() => import("./Pages/ResetPassword"));
@@ -89,6 +89,7 @@ function App() {
     };
     hostHandle();
   }, [loggedIn]);
+  
   const dispatch = useDispatch();
 
   function logout() {

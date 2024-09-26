@@ -78,9 +78,14 @@ const SettlementPage = () => {
       dispatch(messageClear());
     }
   }, [startDate, endDate]);
+  const { isOpen } = useSelector((slice) => slice.sidebar);
 
   return (
-    <div className=" w-full h-full  sm:py-1">
+    <div
+      className={` h-full  ${
+        isOpen === true ? " w-[86vw] " : "  w-[94vw] "
+      } sm:py-1`}
+    >
       <div className="my-4 w-full py-8 flex lg:flex-row flex-col rounded-lg bg-[#a3b1cc]/70 gap-8 px-8 lg:gap-12 z-[99999] items-center justify-center">
         <div className="flex flex-row w-full  lg:gap-4 gap-8">
           <div className="    flex">

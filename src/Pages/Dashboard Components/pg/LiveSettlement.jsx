@@ -75,11 +75,12 @@ const LiveSettlement = () => {
       dispatch(
         fetch_datewise_settlements({
           startDate: start,
-          endDate: end,mode
+          endDate: end,
+          mode,
         })
       );
     } else {
-      dispatch(get_settlements({mode}));
+      dispatch(get_settlements({ mode }));
     }
   }, [startDate, endDate]);
 
@@ -92,9 +93,10 @@ const LiveSettlement = () => {
     }
     dispatch(messageClear());
   }, [errorMessage, successMessage]);
+  const { isOpen } = useSelector((slice) => slice.sidebar);
 
   return (
-    <div className=" w-full h-full  sm:py-1">
+    <div className={`   h-full  sm:py-1`}>
       <div className="my-4 w-full py-8 flex rounded-lg bg-[#a3b1cc]/70 gap-8 px-8 lg:gap-12 z-[99999] items-center justify-center">
         {/* <Callendar
           startDate={startDate}

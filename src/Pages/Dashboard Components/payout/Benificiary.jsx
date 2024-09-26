@@ -138,9 +138,10 @@ const Benificiary = () => {
   useEffect(() => {
     dispatch(get_beneficiary({ mode }));
   }, []);
+  const { isOpen } = useSelector((slice) => slice.sidebar);
 
   return (
-    <div className=" flex flex-col ">
+    <div className={` flex flex-col `}>
       <div className=" mt-4 items-center flex sm:justify-start sm:px-6 justify-center">
         <Button
           gradientDuoTone="purpleToBlue"
@@ -160,13 +161,10 @@ const Benificiary = () => {
       >
         <Modal.Header className=" h-20 text-black">
           {" "}
-          <p className="sm:text-xl text-tairo-blue  text-sm">
-            {" "}
-            Add Beneficiary
-          </p>
+          <p className="sm:text-xl   text-sm"> Add Beneficiary</p>
         </Modal.Header>
-        <Modal.Body className="rounded-b-xl">
-          <div className="flex flex-col bg-white ">
+        <Modal.Body className="rounded-b-xl  bg-stone-300">
+          <div className="flex flex-col">
             <nav className="flex gap-4  w-full items-center justify-center border-b-2 shadow-sm">
               <li
                 className={`px-5  ${

@@ -22,6 +22,7 @@ import fundstatementSlice from "./payout/fundStatementReducer.js";
 import transferSlice from "./payout/transferReducer.js";
 import resellerAdminSlice from "./resellerAdmin/resellerAdmin.js";
 import appSlice from "./apps/appSlice.js";
+import sidebarEvent from "./sidebarEvent/sidebarEvent.js";
 const persistConfig = {
   key: "root",
   version: 1,
@@ -66,6 +67,12 @@ export const store = configureStore({
     /*                                 reseller admin                                  */
     /* -------------------------------------------------------------------------- */
     reselleradmin: resellerAdminSlice,
+
+    /* -------------------------------------------------------------------------- */
+    /*                               Toggle Sidebar                               */
+    /* -------------------------------------------------------------------------- */
+
+    sidebar: sidebarEvent,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({

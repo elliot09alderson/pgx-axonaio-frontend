@@ -11,12 +11,13 @@ import ResellerWiseTransaction from "./ResellerWiseTransaction.jsx";
 import ResellerWiseFundStatement from "./ResellerWiseFundStatement.jsx";
 import MerchantWiseFundStatement from "./MerchantWiseFundStatement.jsx";
 import MerchantWiseTransfer from "./MerchantWiseTransfer.jsx";
+import SideBarX from "../sidebar2/SideBarX.jsx";
 
 // ******* LAZY imports ******
 
 const RADBC = () => {
   return (
-    <RootLayout>
+    <SideBarX>
       {/* Dynamic Routes */}
 
       <Routes>
@@ -50,7 +51,7 @@ const RADBC = () => {
        */}
         {/* <Route path="/dashboard" element={<Dashboard />} /> */}
       </Routes>
-    </RootLayout>
+    </SideBarX>
   );
 };
 

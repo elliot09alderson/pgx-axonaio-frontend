@@ -2,6 +2,11 @@ import WholeSidebar from "./WholeSidebar.jsx";
 import { useMediaQuery } from "react-responsive";
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar.jsx";
+
+
+
+
+
 function RootLayout({ children }) {
   let isTabletMid = useMediaQuery({ query: "(max-width: 768px)" });
   const [open, setOpen] = useState(isTabletMid ? false : true);

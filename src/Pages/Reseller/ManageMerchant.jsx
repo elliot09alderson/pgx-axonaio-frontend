@@ -109,6 +109,8 @@ export default function ManageMerchant() {
   // _____________ manage merchant section  _________
   const { resellerMerchant, successMessage, errorMessage, loader } =
     useSelector((state) => state.reseller);
+
+  // console.log(resellerMerchant, "reseller merchants");
   const { mode } = useSelector((state) => state.user);
 
   useEffect(() => {

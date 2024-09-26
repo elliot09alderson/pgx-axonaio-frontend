@@ -338,32 +338,34 @@ export const PayoutSettings = () => {
       console.error("Failed to copy:", error);
     }
   };
+  const { isOpen } = useSelector((slice) => slice.sidebar);
+
   return (
-    <div className="rounded-b-lg relative overflow-hidden ">
+    <div className={`rounded-b-lg relative overflow-hidden `}>
       <div className="w-full flex items-center justify-center flex-col  bg-[#ede9fe]   my-10 rounded-t-xl">
         <div
           className={` flex justify-start   bg-[#ede9fe] rounded-t-xl  w-full sm:text-lg  items-end  text-sm font-semibold `}
         >
           <div
             className={`px-[3vw] ${
-              active === "Webhook" ? "bg-[#a07bf8] fourth-text" : ""
-            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-[#a07bf8] transition-all delay-600 ease-in  py-2 shadow-lg  `}
+              active === "Webhook" ? "bg-blue-700 fourth-text" : ""
+            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-blue-700 transition-all delay-600 ease-in  py-2 shadow-lg  `}
             onClick={() => setActive("Webhook")}
           >
             Webhook
           </div>
           <div
             className={` px-[3vw] ${
-              active === "APIkey" ? "bg-[#a07bf8] fourth-text" : ""
-            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-[#a07bf8] transition-all delay-600 ease-in   py-2 shadow-lg `}
+              active === "APIkey" ? "bg-blue-700 fourth-text" : ""
+            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base    hover-bg-blue-700 transition-all delay-600 ease-in   py-2 shadow-lg `}
             onClick={() => setActive("APIkey")}
           >
             API Keys
           </div>
           <div
             className={` px-[3vw] ${
-              active === "WhiteList" ? "bg-[#a07bf8] fourth-text" : ""
-            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base     hover-bg-[#a07bf8] transition-all delay-600 ease-in  py-2 shadow-lg `}
+              active === "WhiteList" ? "bg-blue-700 fourth-text" : ""
+            } cursor-pointer rounded-t-md border-r-2 text-xs sm:text-base     hover-bg-blue-700 transition-all delay-600 ease-in  py-2 shadow-lg `}
             onClick={() => setActive("WhiteList")}
           >
             IP White Listing
@@ -374,7 +376,7 @@ export const PayoutSettings = () => {
           <div className="  w-full gap-5 my-5  bg-[#ede9fe] rounded-b-xl">
             <div className="flex flex-col">
               <button
-                className="px-5 py-2 sm:text-lg text-xs  bg-[#a07bf8] rounded-lg text-white  focus:outline-none font-semibold self-end mr-5 lg:mr-10"
+                className="px-5 py-2 sm:text-lg text-xs  bg-blue-700 rounded-lg text-white  focus:outline-none font-semibold self-end mr-2"
                 onClick={() => props.setOpenModal("dismissible")}
               >
                 Add WebHook
@@ -426,7 +428,7 @@ export const PayoutSettings = () => {
                     ).then(() => {
                       setwebhookurl("");
                       setwrittenurl("");
-                      dispatch(get_webhook_data({mode}));
+                      dispatch(get_webhook_data({ mode }));
 
                       props.setOpenModal(undefined);
                     });
@@ -434,26 +436,19 @@ export const PayoutSettings = () => {
                   className="second-bg rounded-sm py-1"
                 >
                   {" "}
-                  <span className="text-xs sm:text-sm md:text-base">
-                    Add Webhook
-                  </span>
+                  Add Webhook
                 </Button>
                 <Button
                   // onClick={() => props.setOpenModal(undefined)}
                   className="second-bg rounded-sm py-1"
                 >
-                  {" "}
-                  <span className="text-xs sm:text-sm md:text-base">
-                    Edit Webhook
-                  </span>
+                  Edit Webhook
                 </Button>
                 <Button
-                  className="first-bg rounded-sm py-1"
+                  className="bg-red-600 hover:bg-red-700 rounded-sm py-1"
                   onClick={() => props.setOpenModal(undefined)}
                 >
-                  <span className="text-xs sm:text-sm md:text-base">
-                    Cancel
-                  </span>
+                  Cancel
                 </Button>
               </Modal.Footer>
             </Modal>
@@ -467,7 +462,7 @@ export const PayoutSettings = () => {
           <div className="  w-full h-full gap-5 bg-[#ede9fe] rounded-b-xl my-5">
             <div className="flex flex-col ">
               <button
-                className="px-4 py-2 sm:text-base text-xs bg-[#a07bf8] rounded-lg text-white  focus:outline-none self-end mr-5  xl:mr-10 font-semibold "
+                className="px-4 py-2 sm:text-base text-xs bg-blue-700 rounded-lg text-white  focus:outline-none self-end mr-5  xl:mr-10 font-semibold "
                 onClick={() => {
                   // props.setOpenModal("dismissible");
                   askRegenerate();
@@ -478,7 +473,7 @@ export const PayoutSettings = () => {
             </div>
             {keys.length > 0 && (
               <div className="w-full   text-white flex flex-col items-center justify-center gap-4 my-4 lg:flex-row px-4 lg:px-8">
-                <div className=" bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center">
+                <div className=" bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center">
                   <h1 className="font-semibold">AES key </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white text-xl font-semibold">
@@ -491,7 +486,7 @@ export const PayoutSettings = () => {
                     />
                   </div>
                 </div>
-                <div className="   bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center  ">
+                <div className="   bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center  ">
                   <h1 className="font-semibold">MID key </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white  font-semibold">
@@ -504,7 +499,7 @@ export const PayoutSettings = () => {
                     />
                   </div>
                 </div>
-                <div className="   bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
+                <div className="   bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
                   <h1 className="font-semibold">SALT key </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white font-semibold">
@@ -517,7 +512,7 @@ export const PayoutSettings = () => {
                     />
                   </div>
                 </div>
-                <div className="   bg-[#a07bf8] rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
+                <div className="   bg-blue-700 rounded-lg  w-72 lg:w-full flex flex-col gap-4 border-red-500 py-4 items-center justify-center ">
                   <h1 className="font-semibold">SECRET KEY </h1>
                   <div className="flex items-center justify-center gap-4">
                     <p className="text-white font-semibold">
@@ -539,7 +534,7 @@ export const PayoutSettings = () => {
           <div className="bg-[#ede9fe] rounded-b-xl my-5 w-full h-full gap-5 ">
             <div className="flex w-full flex-col">
               <button
-                className="px-4 py-2 rounded-lg text-white sm:text-lg text-xs bg-[#a07bf8]  focus:outline-none font-semibold self-end  mr-1 sm:md-6 md:mr-8 xl:mr-10"
+                className="px-4 py-2 rounded-lg text-white sm:text-lg text-xs bg-blue-700  focus:outline-none font-semibold self-end  mr-1 sm:md-6 md:mr-8 xl:mr-10"
                 onClick={() => {
                   props.setOpenModal("dismissible");
                 }}

@@ -144,59 +144,24 @@ const Application = () => {
   const list = ["profile", "logout"];
   const dispatch = useDispatch();
   const toggleDropDown = () => setDropdownOpen(!isDropdownOpend);
-  const [appsData, setAppsData] = useState([]);
   const userData = useSelector((state) => state.user.currentUser);
   const [scrollValue, setScrollValue] = useState(0);
   const { mode, currentUser } = useSelector((state) => state.user);
-  const [selectOption, setSelectOption] = useState({
-    data: ["Test Mode", "Live Mode"],
-    selectOne: userData.app_mode === "test" ? 0 : 1,
-  });
-  const [drawer, setDrawer] = useState({
-    toggle: false,
-    showResult: false,
-    app_id: "",
-    messageIndex: 0,
-  });
+
   const navigate = useNavigate();
 
   // const options = []
   const { enqueueSnackbar } = useSnackbar();
-  const [inputValue, setInputValue] = useState("");
   const [loader, setLoader] = useState(false);
   const { apps } = useSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(fetchApps());
 
-    console.log(apps);
+    console.log("apps======>", apps);
     console.log("app_____mode____", mode);
   }, []);
 
-  useEffect(() => {
-    try {
-      const fetchApps = async () => {
-        setLoader(true);
-        const res = await axios.get(`${BASE_URL}/apps/fetch`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("is_logged_in")}`,
-          },
-        });
-        if (res.data) {
-          setAppsData(res.data);
-          setLoader(false);
-        }
-
-        // console.log("console msg from application", res);
-      };
-      fetchApps();
-    } catch (error) {
-      // console.log(error);
-      onFailure(error, dispatch);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  // console.log("the last path", lastPath);
   const handleChange = async (index) => {
     if (Number(index) === 1) {
       try {
@@ -211,6 +176,7 @@ const Application = () => {
         }
       } catch (error) {
         console.log(error);
+
         onFailure(error, dispatch);
       }
     }
@@ -230,11 +196,11 @@ const Application = () => {
   const handleClick = async (type) => {
     console.log(type, "type------------------------>>>");
     if (mode === "live") {
-      navigate("/merchants/pg/apps");
+      navigate("/merchants/payin/dashboard");
     } else {
       enqueueSnackbar("you have access in test mode!");
 
-      navigate("/merchants/pg/apps");
+      navigate("/merchants/payin/dashboard");
     }
   };
 
@@ -246,10 +212,12 @@ const Application = () => {
           Authorization: `Bearer ${localStorage.getItem("is_logged_in")}`,
         },
       });
+
       if (res.data.status) {
         dispatch(changeAppMode());
       }
     } catch (error) {
+      enqueueSnackbar(error);
       onFailure(error, dispatch);
     }
 
@@ -279,11 +247,11 @@ const Application = () => {
   const Banner = ({ className }) => {
     return (
       <div
-        className={` bg-[#a07bf8]  ${className} select-none flex-wrap sm:flex-row flex-col flex justify-evenly gap-5 sm:gap-5 md:gap-5 rounded-xl py-2 md:min-h-[40vh] sm:min-h-[50vh] lg:h-[45vh] px-2  w-full items-center`}
+        className={`  bg-blue-700 ${className} select-none flex-wrap sm:flex-row flex-col flex justify-evenly gap-5 sm:gap-5 md:gap-5 rounded-xl py-2 md:min-h-[40vh] sm:min-h-[50vh] lg:h-[45vh] px-2  w-full items-center`}
       >
         <div className=" flex flex-col gap-4 py-2  max-w-[700px] ">
           <h1 className="lg:text-3xl  text-white md:my-2 my-3 mx-4 drop-shadow-lg">
-            Welcome to Axonaio !
+            Welcome to Axonpay !
           </h1>
           <h3 className="text-xs lg:text-base text-[#ede9fe] tracking-wider px-4 text-left  sm:text-slate-200 pt-1 font-normal text-tight sm:font-light sm:tracking-wide">
             Using modifiers for this sort of thing can reduce the amount of
@@ -371,6 +339,15 @@ const Application = () => {
       </div>
     );
   };
+
+  function handleTestClick(app) {
+    if (app.app_name == "payin") {
+      navigate("/merchants/pg/dashboard");
+    }
+    if (app.app_name == "payout") {
+      navigate("/merchants/payout/dashboard");
+    }
+  }
   const Card = ({ onClick, appname }) => {
     return (
       <div className="relative max-h-[60vh]  select-none shadow-md my-2 p-2  sm:max-w-[300px] sm:min-h-[300px] rounded-xl md:min-h-[30vh] flex justify-center flex-col items-center">
@@ -418,6 +395,21 @@ const Application = () => {
             aria-label="Loading Spinner"
             data-testid="loader"
           />
+        ) : mode == "test" ? (
+          <>
+            {apps.map((app, index) => {
+              return (
+                <Card
+                  key={app.app_name + index}
+                  onClick={() => handleTestClick(app)}
+                  appname={app.app_name}
+                  // userData={userData}
+                  // isAppAccess={isAppAccess}
+                  // data={data}
+                />
+              );
+            })}
+          </>
         ) : (
           currentUser?.app_permissions.map((app, index) => {
             return (
@@ -441,7 +433,7 @@ const Application = () => {
       <Nav />
       <Container>
         <Banner className="" />
-        <h4 className="drop-shadow-sm pb-2 ">Explore the Axonaio products</h4>
+        <h4 className="drop-shadow-sm pb-2 ">Explore the Axonapay products</h4>
         <GridContainer />
       </Container>
       <footer className="flex px-2 text-md">

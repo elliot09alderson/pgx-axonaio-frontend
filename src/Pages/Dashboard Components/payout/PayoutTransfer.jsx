@@ -124,12 +124,12 @@ const PayoutTransfer = () => {
     }
   }, [startDate, endDate]);
   return (
-    <div className=" flex flex-col ">
+    <div className=" flex flex-col  ">
       <Modal
         dismissible
         show={props.openModal === "dismissible"}
         onClose={() => props.setOpenModal(undefined)}
-        className="rounded-b-xl cross focus:outline-none"
+        className="rounded-b-xl cross  focus:outline-none"
       >
         <Modal.Header
           gradientDuoTone="purpleToBlue"
@@ -138,8 +138,8 @@ const PayoutTransfer = () => {
           {" "}
           <p className="sm:text-3xl text-white text-xl"> Make Transfer</p>
         </Modal.Header>
-        <Modal.Body className="rounded-b-xl">
-          <div className="flex flex-col bg-white ">
+        <Modal.Body className="rounded-b-xl  bg-stone-300">
+          <div className="flex flex-col bg-stone-300">
             <nav className="flex gap-4  w-full items-center justify-center border-b-2 shadow-sm">
               <li
                 className={`px-5  ${
@@ -173,8 +173,8 @@ const PayoutTransfer = () => {
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                   console.log(values);
-                  dispatch(createtransfer({ datax: values ,mode})).then(() => {
-                    dispatch(get_transfer({mode}));
+                  dispatch(createtransfer({ datax: values, mode })).then(() => {
+                    dispatch(get_transfer({ mode }));
                   });
                   setBeneficiaryLabel("Select Beneficiary id");
                   setTransferMethodLabel("Select Transfer Method");
